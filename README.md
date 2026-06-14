@@ -1,4 +1,4 @@
-# Java Fundamentos 
+# Fundamentos Java  
 
 Parte del camino hasta construir una API RESTful con Spring Boot.
 
