@@ -10,7 +10,7 @@ public class Usuario {
     public LocalDateTime fechaRegistro;
 
     public void ver(Pelicula pelicula) {
-        System.out.println(nombre + "Está viendo: ");
+        System.out.println(nombre + " Está viendo: ");
         pelicula.reproducir();
     }
 }

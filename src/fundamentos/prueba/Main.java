@@ -2,6 +2,7 @@ package fundamentos.prueba;
 
 import fundamentos.prueba.contenido.*;
 import fundamentos.prueba.plataforma.*;
+import fundamentos.prueba.util.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,12 +12,19 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Java Cine");
 
-        Pelicula pelicula = new Pelicula();
-        pelicula.titulo = "El señor de los anillos ";
-        pelicula.fechaEstreno = LocalDate.of(2018, 10, 15);
-        pelicula.genero = "Fantasia";
-        pelicula.calificar(4.7);
+        String nombre = ScannerUtils.capturarTexto("Nombre del contenido");
+        String genero = ScannerUtils.capturarTexto("Genero del contenido");
+        int duracion = ScannerUtils.capturarNumero("Duración del contenido");
+        double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
 
+        Pelicula pelicula = new Pelicula();
+        pelicula.titulo = nombre;
+        pelicula.fechaEstreno = LocalDate.of(2018, 10, 15);
+        pelicula.genero = genero;
+        pelicula.calificar(calificacion);
+        pelicula.duracion = duracion;
+
+        System.out.println(pelicula.obtenerFichaTecnica());
 
         Usuario usuario = new Usuario();
         usuario.nombre = "Juan";
@@ -25,17 +33,5 @@ public class Main {
         System.out.println(usuario.fechaRegistro);
 
         usuario.ver(pelicula);
-
-        
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("¿Cuál es tu nombre?");
-//        String nombre = scanner.nextLine();
-//
-//        System.out.println("Hola " + nombre + ", bienvenido.");
-//
-//        System.out.println(nombre + ", ¿cuantos años tenés?");
-//        int edad = scanner.nextInt();
-//
-//        System.out.println(nombre + " podes ver contenido +" + edad);
     }
 }
