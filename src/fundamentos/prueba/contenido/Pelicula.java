@@ -11,6 +11,19 @@ public class Pelicula {
     public double calificacion;
     public boolean disponible;
 
+    public Pelicula(String titulo, int duracion, String genero, double calificacion) {
+        this.titulo = titulo;
+        this.duracion = duracion;
+        this.genero = genero;
+        this.fechaEstreno = LocalDate.now();
+        this.disponible = true;
+    }
+
+    public Pelicula(int duracion, String titulo, String genero, double calificacion) {
+        this(titulo, duracion, genero, calificacion);
+        this.calificar(calificacion);
+    }
+
     public void reproducir() {
         System.out.println("Estoy reproduciendo " + titulo);
     }

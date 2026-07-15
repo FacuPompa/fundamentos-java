@@ -14,24 +14,16 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(NOMBRE_PLATAFORMA + " v" + VERSION);
 
-        String nombre = ScannerUtils.capturarTexto("Nombre del contenido");
+        String titulo = ScannerUtils.capturarTexto("Nombre del contenido");
         String genero = ScannerUtils.capturarTexto("Genero del contenido");
         int duracion = ScannerUtils.capturarNumero("Duración del contenido");
         double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
 
-        Pelicula pelicula = new Pelicula();
-        pelicula.titulo = nombre;
-        pelicula.fechaEstreno = LocalDate.of(2018, 10, 15);
-        pelicula.genero = genero;
-        pelicula.calificar(calificacion);
-        pelicula.duracion = duracion;
+        Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion);
 
         System.out.println(pelicula.obtenerFichaTecnica());
 
-        Usuario usuario = new Usuario();
-        usuario.nombre = "Juan";
-        usuario.fechaRegistro = LocalDateTime.now();
-        //usuario.fechaRegistro = localDateTime.of(2026, 06, 14, 16, 11, 0) año, mes, día, horas, minutos, segundos
+        Usuario usuario = new Usuario("Juan", "juan@gmail.com");
         System.out.println(usuario.fechaRegistro);
 
         usuario.ver(pelicula);
