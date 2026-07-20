@@ -7,7 +7,6 @@ public class Pelicula {
     private String descripcion;
     private int duracion;
     private String genero;
-    private LocalDate fechaEstreno;
     private double calificacion;
     private boolean disponible;
 
@@ -15,7 +14,6 @@ public class Pelicula {
         this.titulo = titulo;
         this.duracion = duracion;
         this.genero = genero;
-        this.fechaEstreno = LocalDate.now();
         this.disponible = true;
     }
 
@@ -37,9 +35,6 @@ public class Pelicula {
         return disponible;
     }
 
-    public LocalDate getFechaEstreno() {
-        return fechaEstreno;
-    }
 
     public double getCalificacion() {
         return calificacion;
@@ -61,9 +56,6 @@ public class Pelicula {
         this.duracion = duracion;
     }
 
-    public void setFechaEstreno(LocalDate fechaEstreno) {
-        this.fechaEstreno = fechaEstreno;
-    }
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
@@ -74,18 +66,18 @@ public class Pelicula {
     }
 
     public String obtenerFichaTecnica() {
-        return titulo + "(" + fechaEstreno.getYear() + ") \n" +
+        return titulo + "\n" +
                 "Género: " + genero + "\n" +
-                "Calificación: " + calificacion + "/5";
+                "Calificación: " + calificacion + "/10";
     }
 
     public void calificar(double calificacion) {
-        if (calificacion >= 0 && calificacion <= 5) {
+        if (calificacion >= 0 && calificacion <= 10) {
             this.calificacion = calificacion;
         }
     }
 
     public boolean esPopular(){
-        return calificacion >= 4;
+        return calificacion >= 9;
     }
 }
