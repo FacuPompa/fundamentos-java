@@ -19,9 +19,10 @@ public class Pelicula {
         this.disponible = true;
     }
 
-    public Pelicula(int duracion, String titulo, String genero, double calificacion) {
-        this(titulo, duracion, genero, calificacion);
-        this.calificar(calificacion);
+    public Pelicula(String titulo, int duracion, String genero) {
+        this.titulo = titulo;
+        this.duracion = duracion;
+        this.genero = genero;
     }
 
     public void reproducir() {
