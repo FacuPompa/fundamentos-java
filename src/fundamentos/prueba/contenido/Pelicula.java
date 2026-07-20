@@ -3,13 +3,13 @@ package fundamentos.prueba.contenido;
 import java.time.LocalDate;
 
 public class Pelicula {
-    public String titulo;
-    public String descripcion;
-    public int duracion;
-    public String genero;
-    public LocalDate fechaEstreno;
-    public double calificacion;
-    public boolean disponible;
+    private String titulo;
+    private String descripcion;
+    private int duracion;
+    private String genero;
+    private LocalDate fechaEstreno;
+    private double calificacion;
+    private boolean disponible;
 
     public Pelicula(String titulo, int duracion, String genero, double calificacion) {
         this.titulo = titulo;
@@ -23,6 +23,50 @@ public class Pelicula {
         this.titulo = titulo;
         this.duracion = duracion;
         this.genero = genero;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public LocalDate getFechaEstreno() {
+        return fechaEstreno;
+    }
+
+    public double getCalificacion() {
+        return calificacion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    public void setFechaEstreno(LocalDate fechaEstreno) {
+        this.fechaEstreno = fechaEstreno;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     public void reproducir() {
