@@ -4,14 +4,11 @@ import fundamentos.prueba.contenido.*;
 import fundamentos.prueba.plataforma.*;
 import fundamentos.prueba.util.ScannerUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Scanner;
-
 public class Main {
     public static final String NOMBRE_PLATAFORMA = "Cine Java";
     public static final String VERSION = "1.0.0";
     public static void main(String[] args) {
+        Plataforma plataforma = new Plataforma(NOMBRE_PLATAFORMA);
         System.out.println(NOMBRE_PLATAFORMA + " v" + VERSION);
 
         String titulo = ScannerUtils.capturarTexto("Nombre del contenido");
@@ -20,8 +17,16 @@ public class Main {
         double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
 
         Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion);
+        Pelicula pelicula2 = new Pelicula("El padrino", 220, "drama", 4.8);
 
-        System.out.println(pelicula.obtenerFichaTecnica());
+        plataforma.agregar(pelicula);
+        plataforma.agregar(pelicula2);
+
+        System.out.println("Numero de elementos en la plataforma: " + plataforma.getContenido().size());
+
+        plataforma.eliminar(pelicula2);
+
+        plataforma.mostrarTitulos();
 
         Usuario usuario = new Usuario("Juan", "juan@gmail.com");
         System.out.println(usuario.fechaRegistro);
