@@ -2,6 +2,7 @@ package fundamentos.prueba;
 
 import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.contenido.ResumenContenido;
 import fundamentos.prueba.excepcion.PeliculaExistenteException;
 import fundamentos.prueba.plataforma.Plataforma;
 import fundamentos.prueba.util.ScannerUtils;
@@ -55,8 +56,8 @@ public class Main {
 
                 }
                 case MOSTRAR_TODO -> {
-                    List<String> titulos = plataforma.getTitulos();
-                    titulos.forEach(titulo -> System.out.println(titulo));
+                    List<ResumenContenido> contenidosResumidos = plataforma.getResumenes();
+                    contenidosResumidos.forEach(resumen -> System.out.println(resumen.toString()));
                 }
                 case BUSCAR_POR_TITULO -> {
                     String nombreBuscado = ScannerUtils.capturarTexto("Nombre del contenido a buscar");

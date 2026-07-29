@@ -2,6 +2,7 @@ package fundamentos.prueba.plataforma;
 
 import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.contenido.ResumenContenido;
 import fundamentos.prueba.excepcion.PeliculaExistenteException;
 
 import java.util.ArrayList;
@@ -37,6 +38,12 @@ public class Plataforma {
     public List<String> getTitulos() {
         return contenido.stream()
                 .map(Pelicula::getTitulo) //transforma la lista en otro elemento distinto
+                .toList();
+    }
+
+    public List<ResumenContenido> getResumenes() {
+        return contenido.stream()
+                .map(c -> new ResumenContenido(c.getTitulo(), c.getDuracion(), c.getGenero()))
                 .toList();
     }
 
