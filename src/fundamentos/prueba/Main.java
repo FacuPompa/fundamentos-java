@@ -2,6 +2,7 @@ package fundamentos.prueba;
 
 import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.excepcion.PeliculaExistenteException;
 import fundamentos.prueba.plataforma.Plataforma;
 import fundamentos.prueba.util.ScannerUtils;
 
@@ -46,7 +47,12 @@ public class Main {
                     int duracion = ScannerUtils.capturarNumero("Duración del contenido");
                     double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
 
-                    plataforma.agregar(new Pelicula(titulo, duracion, genero, calificacion));
+                    try {
+                        plataforma.agregar(new Pelicula(titulo, duracion, genero, calificacion));
+                    } catch (PeliculaExistenteException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                 }
                 case MOSTRAR_TODO -> {
                     List<String> titulos = plataforma.getTitulos();

@@ -2,6 +2,7 @@ package fundamentos.prueba.plataforma;
 
 import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.excepcion.PeliculaExistenteException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,6 +26,11 @@ public class Plataforma {
     }
 
     public void agregar(Pelicula elemento) {
+        Pelicula contenido = this.buscarPorTitulo(elemento.getTitulo());
+        if (contenido != null) {
+            throw new PeliculaExistenteException(elemento.getTitulo());
+        }
+
         this.contenido.add(elemento);
     }
 
