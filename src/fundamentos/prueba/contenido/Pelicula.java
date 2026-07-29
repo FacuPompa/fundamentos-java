@@ -14,6 +14,7 @@ public class Pelicula {
         this.titulo = titulo;
         this.duracion = duracion;
         this.genero = genero;
+        this.calificacion = calificacion;
         this.disponible = true;
     }
 
