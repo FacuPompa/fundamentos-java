@@ -3,6 +3,7 @@ package fundamentos.prueba.plataforma;
 import fundamentos.prueba.contenido.Pelicula;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Plataforma {
@@ -26,8 +27,10 @@ public class Plataforma {
         this.contenido.add(elemento);
     }
 
-    public void mostrarTitulos() {
-        contenido.forEach(pelicula -> System.out.println(pelicula.getTitulo())); // la flecha = lambda, forma corta de escribir un metodo
+    public List<String> getTitulos() {
+        return contenido.stream()
+                .map(Pelicula::getTitulo) //transforma la lista en otro elemento distinto
+                .toList();
     }
 
     public void eliminar(Pelicula elemento) {
@@ -52,6 +55,39 @@ public class Plataforma {
                 .filter(contenido -> contenido.getGenero().equalsIgnoreCase(genero))
                 .toList();
 
+    }
+
+    public List<Pelicula> getPopulares(int cantidad) {
+        return contenido.stream()
+                .sorted(Comparator.comparingDouble(Pelicula::getCalificacion).reversed())
+                .limit(cantidad)
+                .toList();
+    }
+
+    public List<Pelicula> getMuyPopulares() {
+        return contenido.stream()
+                .filter(pelicula -> pelicula.getCalificacion() >= 8.7)
+                .toList();
+    }
+
+    public Pelicula getMasLarga() {
+        return contenido.stream()
+                .sorted(Comparator.comparingInt(Pelicula::getDuracion).reversed())
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Pelicula getMasCorta() {
+        return contenido.stream()
+                .sorted(Comparator.comparingInt(Pelicula::getDuracion))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public int getDuracionTotal() {
+        return contenido.stream()
+                .mapToInt(pelicula -> pelicula.getDuracion())
+                .sum();
     }
 
 
