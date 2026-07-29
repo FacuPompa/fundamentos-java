@@ -27,9 +27,7 @@ public class Plataforma {
     }
 
     public void mostrarTitulos() {
-        for (Pelicula pelicula : contenido) {
-            System.out.println(pelicula.getTitulo());
-        }
+        contenido.forEach(pelicula -> System.out.println(pelicula.getTitulo())); // la flecha = lambda, forma corta de escribir un metodo
     }
 
     public void eliminar(Pelicula elemento) {
@@ -37,12 +35,23 @@ public class Plataforma {
     }
 
     public Pelicula buscarPorTitulo(String titulo) {
-        for (Pelicula pelicula : contenido) {
-            if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
-                return pelicula;
-            }
-        }
-        return null;
+//        for (Pelicula pelicula : contenido) {
+//            if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
+//                return pelicula;
+//            }
+//        }
+
+        return contenido.stream().filter(contenido -> contenido.getTitulo().equalsIgnoreCase(titulo))
+                .findFirst() //busca la primer pelicula porque no pueden existir pelis con mismo nombre
+                .orElse(null);
+//        return null;
+    }
+
+    public List<Pelicula> buscarPorGenero(String genero) {
+        return contenido.stream()
+                .filter(contenido -> contenido.getGenero().equalsIgnoreCase(genero))
+                .toList();
+
     }
 
 
