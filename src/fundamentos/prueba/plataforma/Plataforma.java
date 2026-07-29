@@ -1,6 +1,9 @@
 package fundamentos.prueba.plataforma;
 
+import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.contenido.ResumenContenido;
+import fundamentos.prueba.excepcion.PeliculaExistenteException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,12 +27,23 @@ public class Plataforma {
     }
 
     public void agregar(Pelicula elemento) {
+        Pelicula contenido = this.buscarPorTitulo(elemento.getTitulo());
+        if (contenido != null) {
+            throw new PeliculaExistenteException(elemento.getTitulo());
+        }
+
         this.contenido.add(elemento);
     }
 
     public List<String> getTitulos() {
         return contenido.stream()
                 .map(Pelicula::getTitulo) //transforma la lista en otro elemento distinto
+                .toList();
+    }
+
+    public List<ResumenContenido> getResumenes() {
+        return contenido.stream()
+                .map(c -> new ResumenContenido(c.getTitulo(), c.getDuracion(), c.getGenero()))
                 .toList();
     }
 
@@ -50,9 +64,9 @@ public class Plataforma {
 //        return null;
     }
 
-    public List<Pelicula> buscarPorGenero(String genero) {
+    public List<Pelicula> buscarPorGenero(Genero genero) {
         return contenido.stream()
-                .filter(contenido -> contenido.getGenero().equalsIgnoreCase(genero))
+                .filter(contenido -> contenido.getGenero().equals(genero))
                 .toList();
 
     }
