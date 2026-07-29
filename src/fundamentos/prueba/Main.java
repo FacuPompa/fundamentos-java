@@ -1,5 +1,7 @@
 package fundamentos.prueba;
 
+import java.util.List;
+
 import fundamentos.prueba.contenido.*;
 import fundamentos.prueba.plataforma.*;
 import fundamentos.prueba.util.ScannerUtils;
@@ -11,8 +13,9 @@ public class Main {
     public static final int AGREGAR = 1;
     public static final int MOSTRAR_TODO = 2;
     public static final int BUSCAR_POR_TITULO = 3;
-    public static final int ELIMINAR = 4;
-    public static final int SALIR = 5;
+    public static final int BUSCAR_POR_GENERO = 4;
+    public static final int ELIMINAR = 5;
+    public static final int SALIR = 6;
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(NOMBRE_PLATAFORMA);
         System.out.println(NOMBRE_PLATAFORMA + " v" + VERSION);
@@ -20,14 +23,16 @@ public class Main {
         cargarPeliculas(plataforma);
 
         while (true) {
-            int opcionElegida = ScannerUtils.capturarNumero("""
+            int opcionElegida = ScannerUtils.capturarNumero(""" 
                     Ingrese una de las siguientes opciones: 
                     1. Agregar contenido
                     2. Mostrar todo
                     3. Buscar por titulo
-                    4. Eliminar
-                    5. Salir
+                    4. Buscar por genero
+                    5. Eliminar
+                    6. Salir
                     """);
+            ///las comillas triples abren bloque de texto
 
             switch (opcionElegida) {
                 case AGREGAR -> {
@@ -48,6 +53,13 @@ public class Main {
                     } else {
                         System.out.println(nombreBuscado + " no existe dentro de " + plataforma.getNombre());
                     }
+                }
+                case BUSCAR_POR_GENERO -> {
+                    String generoBuscado = ScannerUtils.capturarTexto("Genero del contenido a buscar");
+
+                    List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
+                    System.out.println(contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado);
+                    contenidoPorGenero.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
                 }
                 case ELIMINAR -> {
                     String nombreAEliminar = ScannerUtils.capturarTexto("Nombre del contenido a eliminar");
