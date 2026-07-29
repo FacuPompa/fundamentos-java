@@ -1,10 +1,11 @@
 package fundamentos.prueba;
 
-import java.util.List;
-
-import fundamentos.prueba.contenido.*;
-import fundamentos.prueba.plataforma.*;
+import fundamentos.prueba.contenido.Genero;
+import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.plataforma.Plataforma;
 import fundamentos.prueba.util.ScannerUtils;
+
+import java.util.List;
 
 public class Main {
     public static final String NOMBRE_PLATAFORMA = "Cine Java";
@@ -41,7 +42,7 @@ public class Main {
             switch (opcionElegida) {
                 case AGREGAR -> {
                     String titulo = ScannerUtils.capturarTexto("Nombre del contenido");
-                    String genero = ScannerUtils.capturarTexto("Genero del contenido");
+                    Genero genero = ScannerUtils.capturarGenero("Genero del contenido");
                     int duracion = ScannerUtils.capturarNumero("Duración del contenido");
                     double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
 
@@ -62,7 +63,7 @@ public class Main {
                     }
                 }
                 case BUSCAR_POR_GENERO -> {
-                    String generoBuscado = ScannerUtils.capturarTexto("Genero del contenido a buscar");
+                    Genero generoBuscado = ScannerUtils.capturarGenero("Opciones:");
 
                     List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
                     System.out.println(contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado);
@@ -93,15 +94,15 @@ public class Main {
     }
 
     private static void cargarPeliculas(Plataforma plataforma) {
-        plataforma.agregar(new Pelicula ("El senior de los anillos", 201, "Accion", 9));
-        plataforma.agregar(new Pelicula ("El Padrino",175, "Drama", 9.2));
-        plataforma.agregar(new Pelicula ("Titanic",194, "Drama", 8));
-        plataforma.agregar(new Pelicula ("Interestellar",169, "Ciencia Ficcion", 8.7));
-        plataforma.agregar(new Pelicula ("Joker",122, "Drama", 8.3));
-        plataforma.agregar(new Pelicula ("Kill Bill",111, "Accion", 8.2));
-        plataforma.agregar(new Pelicula ("El club de la pelea",139, "Drama", 8.8));
-        plataforma.agregar(new Pelicula ("Los siete samurais",207, "Accion", 8.6));
-        plataforma.agregar(new Pelicula ("Gladiador",155, "Accion", 8.5));
+        plataforma.agregar(new Pelicula ("El senior de los anillos", 201, Genero.EPICA, 9));
+        plataforma.agregar(new Pelicula ("El Padrino",175, Genero.DRAMA, 9.2));
+        plataforma.agregar(new Pelicula ("Titanic",194, Genero.DRAMA, 8));
+        plataforma.agregar(new Pelicula ("Interestellar",169, Genero.CIENCIA_FICCION, 8.7));
+        plataforma.agregar(new Pelicula ("Joker",122, Genero.DRAMA, 8.3));
+        plataforma.agregar(new Pelicula ("Kill Bill",111, Genero.ACCION, 8.2));
+        plataforma.agregar(new Pelicula ("El club de la pelea",139, Genero.DRAMA, 8.8));
+        plataforma.agregar(new Pelicula ("Los siete samurais",207, Genero.EPICA, 8.6));
+        plataforma.agregar(new Pelicula ("Gladiador",155, Genero.AVENTURA, 8.5));
 
     }
 }

@@ -1,5 +1,6 @@
 package fundamentos.prueba.plataforma;
 
+import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
 
 import java.util.ArrayList;
@@ -50,9 +51,9 @@ public class Plataforma {
 //        return null;
     }
 
-    public List<Pelicula> buscarPorGenero(String genero) {
+    public List<Pelicula> buscarPorGenero(Genero genero) {
         return contenido.stream()
-                .filter(contenido -> contenido.getGenero().equalsIgnoreCase(genero))
+                .filter(contenido -> contenido.getGenero().equals(genero))
                 .toList();
 
     }
