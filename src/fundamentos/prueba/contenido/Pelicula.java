@@ -11,7 +11,7 @@ public class Pelicula {
     private double calificacion;
     private boolean disponible;
 
-    public Pelicula(String titulo, int duracion, Genero genero, double calificacion) {
+    public Pelicula(String titulo, int duracion, Genero genero, double calificacion, LocalDate fechaEstreno) {
         this.titulo = titulo;
         this.duracion = duracion;
         this.genero = genero;

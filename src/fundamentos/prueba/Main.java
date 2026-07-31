@@ -8,6 +8,7 @@ import fundamentos.prueba.plataforma.Plataforma;
 import fundamentos.prueba.util.FileUtils;
 import fundamentos.prueba.util.ScannerUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
@@ -51,9 +52,10 @@ public class Main {
                     Genero genero = ScannerUtils.capturarGenero("Genero del contenido");
                     int duracion = ScannerUtils.capturarNumero("Duración del contenido");
                     double calificacion = ScannerUtils.capturarDecimal("Calificación del contenido");
+                    LocalDate fechaEstreno = LocalDate.parse(ScannerUtils.capturarTexto("Fecha de estreno (AAAA-MM-DD)" ));
 
                     try {
-                        plataforma.agregar(new Pelicula(titulo, duracion, genero, calificacion));
+                        plataforma.agregar(new Pelicula(titulo, duracion, genero, calificacion, fechaEstreno));
                     } catch (PeliculaExistenteException e) {
                         System.out.println(e.getMessage());
                     }
