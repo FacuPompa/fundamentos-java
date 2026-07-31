@@ -5,6 +5,7 @@ import fundamentos.prueba.contenido.Pelicula;
 import fundamentos.prueba.contenido.ResumenContenido;
 import fundamentos.prueba.excepcion.PeliculaExistenteException;
 import fundamentos.prueba.plataforma.Plataforma;
+import fundamentos.prueba.util.FileUtils;
 import fundamentos.prueba.util.ScannerUtils;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class Main {
     public static final int REPRODUCIR = 6;
     public static final int ELIMINAR = 8;
     public static final int SALIR = 9;
+
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(NOMBRE_PLATAFORMA);
         System.out.println(NOMBRE_PLATAFORMA + " v" + VERSION);
@@ -41,7 +43,7 @@ public class Main {
                     8. Eliminar
                     9. Salir
                     """);
-            ///las comillas triples abren bloque de texto
+            /// las comillas triples abren bloque de texto
 
             switch (opcionElegida) {
                 case AGREGAR -> {
@@ -65,7 +67,7 @@ public class Main {
                     String nombreBuscado = ScannerUtils.capturarTexto("Nombre del contenido a buscar");
                     Pelicula pelicula = plataforma.buscarPorTitulo(nombreBuscado);
 
-                    if(pelicula != null) {
+                    if (pelicula != null) {
                         System.out.println(pelicula.obtenerFichaTecnica());
                     } else {
                         System.out.println(nombreBuscado + " no existe dentro de " + plataforma.getNombre());
@@ -99,7 +101,7 @@ public class Main {
                     String nombreAEliminar = ScannerUtils.capturarTexto("Nombre del contenido a eliminar");
                     Pelicula pelicula = plataforma.buscarPorTitulo(nombreAEliminar);
 
-                    if(pelicula != null) {
+                    if (pelicula != null) {
                         plataforma.eliminar(pelicula);
                         System.out.println(nombreAEliminar + " eliminado");
                     } else {
@@ -113,16 +115,7 @@ public class Main {
     }
 
     private static void cargarPeliculas(Plataforma plataforma) {
-        plataforma.agregar(new Pelicula ("El senior de los anillos", 201, Genero.EPICA, 9));
-        plataforma.agregar(new Pelicula ("El Padrino",175, Genero.DRAMA, 9.2));
-        plataforma.agregar(new Pelicula ("Titanic",194, Genero.DRAMA, 8));
-        plataforma.agregar(new Pelicula ("Interestellar",169, Genero.CIENCIA_FICCION, 8.7));
-        plataforma.agregar(new Pelicula ("Joker",122, Genero.DRAMA, 8.3));
-        plataforma.agregar(new Pelicula ("Kill Bill",111, Genero.ACCION, 8.2));
-        plataforma.agregar(new Pelicula ("El club de la pelea",139, Genero.DRAMA, 8.8));
-        plataforma.agregar(new Pelicula ("Los siete samurais",207, Genero.EPICA, 8.6));
-        plataforma.agregar(new Pelicula ("Gladiador",155, Genero.AVENTURA, 8.5));
-
+        plataforma.getContenido().addAll(FileUtils.leerContenido());
     }
 }
 
