@@ -4,6 +4,7 @@ import fundamentos.prueba.contenido.Genero;
 import fundamentos.prueba.contenido.Pelicula;
 import fundamentos.prueba.contenido.ResumenContenido;
 import fundamentos.prueba.excepcion.PeliculaExistenteException;
+import fundamentos.prueba.util.FileUtils;
 
 import java.util.*;
 
@@ -32,6 +33,7 @@ public class Plataforma {
             throw new PeliculaExistenteException(elemento.getTitulo());
         }
 
+        FileUtils.escribirContenido(elemento);
         this.contenido.add(elemento);
     }
 

@@ -6,6 +6,7 @@ import fundamentos.prueba.contenido.Pelicula;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,25 @@ public class FileUtils {
 
     public static final String NOMBRE_ARCHIVO = "contenido.txt";
     public static final String SEPARADOR = "|";
+
+    public static void escribirContenido(Pelicula contenido) {
+        String linea = String.join(SEPARADOR,
+                contenido.getTitulo(),
+                String.valueOf(contenido.getDuracion()),
+                contenido.getGenero().name(),
+                String.valueOf(contenido.getCalificacion()),
+                contenido.getFechaEstreno().toString()
+        );
+
+        try {
+            Files.writeString(Paths.get(NOMBRE_ARCHIVO),
+                    linea + System.lineSeparator(), //hace un salto de linea (\n)
+                    StandardOpenOption.CREATE, //crea el archivo si no existe
+                    StandardOpenOption.APPEND); //concatena la linea al final del archivo
+        } catch (IOException e) {
+            System.out.println("Error imprimiendo el archivo" + e.getMessage()); ;
+        }
+    }
 
     public static List<Pelicula> leerContenido() {
         List<Pelicula> contenidoDesdeArchivo = new ArrayList<>();
@@ -31,7 +51,7 @@ public class FileUtils {
                     double calificacion = datos[3].isBlank() ? 0 : Double.parseDouble(datos[3]); //valida si no tiene calificacion cargada
                     LocalDate fechaEstreno = LocalDate.parse(datos[4]);
 
-                    Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion);
+                    Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion, fechaEstreno);
                     pelicula.setFechaEstreno(fechaEstreno);
 
                     contenidoDesdeArchivo.add(pelicula);
