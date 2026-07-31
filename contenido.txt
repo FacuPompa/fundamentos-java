@@ -7,3 +7,5 @@ Kill Bill|111|ACCION|8.2|2003-10-10
 El club de la pelea|139|DRAMA|8.8|1999-09-10
 Los siete samurais|207|EPICA|8.6|1954-04-26
 Gladiador|155|AVENTURA|8.5|2000-05-05
+Bastardos sin gloria|153|DRAMA|8.4|2009-05-20
+Game of Thrones|60|EPICA|9.2|2011-05-08

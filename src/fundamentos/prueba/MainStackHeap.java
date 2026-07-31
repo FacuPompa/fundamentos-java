@@ -1,11 +1,9 @@
 package fundamentos.prueba;
 
-import fundamentos.prueba.contenido.Pelicula;
-
 public class MainStackHeap {
     public static void main(String[] args) {
-//        Pelicula reyLeon = new Pelicula("El rey León", 135, "Animada");
-//        Pelicula harryPotter = new Pelicula("Harry Potter", 200, "Fantasia");
+//        Contenido reyLeon = new Contenido("El rey León", 135, "Animada");
+//        Contenido harryPotter = new Contenido("Harry Potter", 200, "Fantasia");
 //
 //        reyLeon = harryPotter;
 //
