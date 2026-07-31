@@ -1,6 +1,6 @@
 package fundamentos.prueba.plataforma;
 
-import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.contenido.Contenido;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +15,8 @@ public class Usuario {
         this.fechaRegistro = LocalDateTime.now();
     }
 
-    public void ver(Pelicula pelicula) {
+    public void ver(Contenido contenido) {
         System.out.println(nombre + " Está viendo: ");
-        pelicula.reproducir();
+        contenido.reproducir();
     }
 }
