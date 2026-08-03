@@ -17,4 +17,14 @@ public class Serie extends Contenido{
     public int getTemporadas() {
         return temporadas;
     }
+
+
+    @Override
+    public void reproducir() {
+        System.out.println("Reproduciendo la serie " + this.getTitulo());
+    }
+
+    public String obtenerFichaTecnica() {
+        return this.getTitulo() + "\n" + this.getDuracion() + "\n" + this.getGenero() + "\n" + this.getCalificacion() + "/10 \n";
+    }
 }
