@@ -1,8 +1,6 @@
 package fundamentos.prueba.plataforma;
 
-import fundamentos.prueba.contenido.Contenido;
-import fundamentos.prueba.contenido.Genero;
-import fundamentos.prueba.contenido.ResumenContenido;
+import fundamentos.prueba.contenido.*;
 import fundamentos.prueba.excepcion.PeliculaExistenteException;
 import fundamentos.prueba.util.FileUtils;
 
@@ -90,6 +88,20 @@ public class Plataforma {
         return contenido.stream()
                 .sorted(Comparator.comparingDouble(Contenido::getCalificacion).reversed())
                 .limit(cantidad)
+                .toList();
+    }
+
+    public List<Pelicula> getPeliculas() {
+        return contenido.stream()
+                .filter(contenido -> contenido instanceof Pelicula)
+                .map(contenidoFiltrado -> (Pelicula) contenidoFiltrado)
+                .toList();
+    }
+
+    public List<Serie> getSeries() {
+        return contenido.stream()
+                .filter(contenido -> contenido instanceof Serie)
+                .map(contenidoFiltrado -> (Serie) contenidoFiltrado)
                 .toList();
     }
 

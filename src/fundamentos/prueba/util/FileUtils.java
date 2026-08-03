@@ -2,6 +2,8 @@ package fundamentos.prueba.util;
 
 import fundamentos.prueba.contenido.Contenido;
 import fundamentos.prueba.contenido.Genero;
+import fundamentos.prueba.contenido.Pelicula;
+import fundamentos.prueba.contenido.Serie;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,9 +27,17 @@ public class FileUtils {
                 contenido.getFechaEstreno().toString()
         );
 
+        String lineaFinal;
+
+        if (contenido instanceof Serie serie) {
+            lineaFinal = "SERIE" + SEPARADOR + linea + SEPARADOR + serie.getTemporadas();
+        } else {
+            lineaFinal = "PELICULA" + SEPARADOR + linea;
+        }
+
         try {
             Files.writeString(Paths.get(NOMBRE_ARCHIVO),
-                    linea + System.lineSeparator(), //hace un salto de linea (\n)
+                    lineaFinal + System.lineSeparator(), //hace un salto de linea (\n)
                     StandardOpenOption.CREATE, //crea el archivo si no existe
                     StandardOpenOption.APPEND); //concatena la linea al final del archivo
         } catch (IOException e) {
@@ -44,18 +54,26 @@ public class FileUtils {
             lineas.forEach(linea -> {
                 String[] datos = linea.split("\\" + SEPARADOR);
 
-                if (datos.length == 5) {
-                    String titulo = datos[0];
-                    int duracion = Integer.parseInt(datos[1]);
-                    Genero genero = Genero.valueOf(datos[2].toUpperCase());
-                    double calificacion = datos[3].isBlank() ? 0 : Double.parseDouble(datos[3]); //valida si no tiene calificacion cargada
-                    LocalDate fechaEstreno = LocalDate.parse(datos[4]);
+                String tipoContenido = datos[0];
 
-                    Contenido contenido = new Contenido(titulo, duracion, genero, calificacion, fechaEstreno);
+                if (("PELICULA".equals(tipoContenido) && datos.length == 6) ||  ("SERIE".equals(tipoContenido) && datos.length == 7)) {
+                    String titulo = datos[1];
+                    int duracion = Integer.parseInt(datos[2]);
+                    Genero genero = Genero.valueOf(datos[3].toUpperCase());
+                    double calificacion = datos[4].isBlank() ? 0 : Double.parseDouble(datos[4]); //valida si no tiene calificacion cargada
+                    LocalDate fechaEstreno = LocalDate.parse(datos[5]);
+
+                    Contenido contenido;
+
+                    if ("PELICULA".equals(tipoContenido)) {
+                        contenido = new Pelicula(titulo, duracion, genero, calificacion, fechaEstreno);
+                    } else {
+                        int temporadas = Integer.parseInt(datos[6]);
+                        contenido = new Serie(titulo, duracion, genero, calificacion, fechaEstreno, temporadas);
+                    }
+
                     contenido.setFechaEstreno(fechaEstreno);
-
                     contenidoDesdeArchivo.add(contenido);
-
                 }
 
             });
