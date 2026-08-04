@@ -2,7 +2,7 @@ package fundamentos.prueba.contenido;
 
 import java.time.LocalDate;
 
-public class Serie extends Contenido{
+public class Serie extends Contenido implements Promocionable {
     private int temporadas;
 
     public Serie(String titulo, int duracion, Genero genero, double calificacion) {
@@ -24,7 +24,13 @@ public class Serie extends Contenido{
         System.out.println("Reproduciendo la serie " + this.getTitulo());
     }
 
+    @Override
     public String obtenerFichaTecnica() {
         return this.getTitulo() + "\n" + this.getDuracion() + "\n" + this.getGenero() + "\n" + this.getCalificacion() + "/10 \n";
+    }
+
+    @Override
+    public String promocionar() {
+        return "Disfrutá de la mejor serie del mundo: " + this.getTitulo() + " y más";
     }
 }
